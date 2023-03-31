@@ -205,6 +205,12 @@ message Planned
   optional Clock    time     = 3;
 }
 
+message MeasuredForce
+{
+  optional bool fcActive = 1;
+  repeated double force = 2;
+}
+
 //======================================================================================================================
 //
 // Primary messages.
@@ -218,6 +224,7 @@ message Input
   optional Feedback feedback = 2;
   optional Planned  planned  = 3;
   optional Status   status   = 4;
+  optional MeasuredForce measuredForce = 5;
 }
 
 // Outputs to send to the robot controller.

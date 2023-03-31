@@ -147,7 +147,8 @@ message EgmTestSignals			// Test signals
 
 message EgmMeasuredForce 				// Array of 6 force values for a robot
 {
-    repeated double force = 1;
+    optional bool fcActive = 1;
+    repeated double force = 2;
 }
 
 // Robot controller outbound message, sent from the controller to the sensor during position guidance and position streaming

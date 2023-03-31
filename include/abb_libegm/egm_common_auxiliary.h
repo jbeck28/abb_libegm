@@ -341,6 +341,8 @@ void copyPresent(wrapper::Output* p_target, const wrapper::Output& source);
  */
 bool parse(wrapper::Header* p_target, const EgmHeader& source);
 
+bool parse(wrapper::MeasuredForce* p_target, const EgmRobot& source);
+
 /**
  * \brief Parse an abb::egm::EgmRobot object.
  *

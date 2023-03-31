@@ -713,6 +713,22 @@ bool parse(wrapper::Clock* p_target, const EgmClock& source)
   return success;
 }
 
+bool parse(wrapper::MeasuredForce* p_target, const EgmRobot& source) {
+  bool succ = true;
+
+  if (p_target && source.has_measuredforce()) {
+    p_target->clear_force();
+    p_target->set_fcactive(source.measuredforce().fcactive());
+    for (int i = 0; i < source.measuredforce().force_size(); i++) {
+      p_target->add_force(source.measuredforce().force(i));
+//      p_target->set_force(i, source.measuredforce().force(i));
+    }
+  } else {
+    succ = false;
+  }
+  return succ;
+}
+
 bool parse(wrapper::Joints* p_target_robot,
            wrapper::Joints* p_target_external,
            const EgmJoints& source_robot,

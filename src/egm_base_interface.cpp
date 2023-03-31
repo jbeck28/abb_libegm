@@ -85,13 +85,20 @@ bool EGMBaseInterface::InputContainer::extractParsedInformation(const RobotAxes&
   bool success = false;
 
   detectRWAndEGMVersions();
-
+  std::vector<double> f_dat;
   if (has_new_data_ &&
       parse(current_.mutable_header(), egm_robot_.header()) &&
       parse(current_.mutable_feedback(), egm_robot_.feedback(), axes) &&
       parse(current_.mutable_planned(), egm_robot_.planned(), axes) &&
-      parse(current_.mutable_status(), egm_robot_))
+      parse(current_.mutable_status(), egm_robot_) &&
+      parse(current_.mutable_measuredforce(), egm_robot_))
   {
+//    for(int l = 0; l < 6; l++){
+//      f_dat.push_back(egm_robot_.mutable_measuredforce()->force(l));
+//    }
+//
+//    std::cout << "has measured force: " << egm_robot_.has_measuredforce() << "force: " << egm_robot_.mutable_measuredforce()->force_size() << std::endl;
+//    std::cout << "[" << f_dat[0] << ", " << f_dat[1] << ", " << f_dat[2] << "]" << std::endl;
     if (first_message_)
     {
       initial_.CopyFrom(current_);
